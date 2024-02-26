@@ -18,6 +18,11 @@ code {
   width: 100% !important;
   border-radius: 5px !important;
 }
+.bigimg{
+   height: 300px;
+  width: 100% !important;
+  border-radius: 5px !important;
+}
 h1 {
   font-size: 20px !important;
 }

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Flight from "../components/Flight";
+import Loader from "../components/Loader";
 
 function Homescreen() {
   const [flight, setFlight] = useState([]);
@@ -12,10 +13,12 @@ function Homescreen() {
       try {
         setLoading(true);
         const response = await axios.get("/api/flights/getallflights");
-        console.log(response);
 
-        setFlight(response.data);
-        setLoading(false);
+        setTimeout(() => {
+          setFlight(response.data);
+          setLoading(false);
+        }, 2000);
+        console.log(response);
       } catch (error) {
         setError(true);
         console.log(error);
@@ -30,7 +33,7 @@ function Homescreen() {
     <div className="container">
       <div className="row justify-content-center mt-5">
         {loading ? (
-          <h1>Loading....</h1>
+          <Loader />
         ) : error ? (
           <h1>error</h1>
         ) : (

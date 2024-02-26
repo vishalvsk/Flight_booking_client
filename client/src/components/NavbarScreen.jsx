@@ -1,25 +1,57 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Navbar.css";
 
 function Navbar() {
+  const userData = localStorage.getItem("userData");
+  const user = userData ? JSON.parse(userData) : null;
+
+  const handleLogout = () => {
+    localStorage.removeItem("userData");
+    window.location.reload(); // Refresh the page to update the navbar
+  };
+
   return (
     <nav className="navbar">
       <ul className="navbar-nav">
         <li className="nav-item">
-          <a href="#" className="nav-link">
+          <a href="/home" className="nav-link">
             Flights
           </a>
         </li>
-        <li className="nav-item">
-          <a href="/register" className="nav-link">
-            Register
-          </a>
-        </li>
-        <li className="nav-item">
-          <a href="/login" className="nav-link">
-            Login
-          </a>
-        </li>
+        {user ? (
+          <li className="nav-item dropdown">
+            <a
+              className="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Welcome, {user.name}
+            </a>
+            <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+              <button className="dropdown-item" onClick={handleLogout}>
+                Logout
+              </button>
+            </div>
+          </li>
+        ) : (
+          <>
+            <li className="nav-item">
+              <Link to="/register" className="nav-link">
+                Register
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/login" className="nav-link">
+                Login
+              </Link>
+            </li>
+          </>
+        )}
       </ul>
     </nav>
   );
