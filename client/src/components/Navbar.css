@@ -3,14 +3,16 @@
   color: white;
   padding: 10px 20px;
 }
-
-.navbar-nav {
+.navbar_nav{
   display: flex;
   flex-direction: row;
-  list-style-type: none;
-
-  padding: 0;
 }
+
+
+/* .flex{
+  display: ;
+  justify-content: center;
+} */
 
 .nav-item {
   margin-right: 500px;
