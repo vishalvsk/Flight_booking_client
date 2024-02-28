@@ -1,46 +1,46 @@
+/* Navbar Container */
 .navbar {
   background-color: black;
   color: white;
   padding: 10px 20px;
 }
-.navbar_nav{
+
+/* Navbar Navigation */
+.navbar_nav {
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap; /* Wrap items to next line if there's not enough space */
+  justify-content: space-between; /* Distribute items evenly */
 }
 
-
-/* .flex{
-  display: ;
-  justify-content: center;
-} */
-
+/* Navbar Item */
 .nav-item {
-  margin-right: 500px;
+  margin-right: 10px; /* Adjust margin between items */
 }
 
-/* .nav-link {
+/* Navbar Link */
+.nav-link {
   color: white;
   text-decoration: none;
-} */
+}
+
+/* Navbar Link Hover */
+.nav-link:hover {
+  text-decoration: underline;
+}
+
+/* Navbar Link Colors */
 a:link {
   color: red;
 }
 
-/* visited link */
 a:visited {
   color: green;
 }
 
-/* mouse over link */
 a:hover {
   color: hotpink;
 }
 
-/* selected link */
 a:active {
   color: blue;
 }
-/* 
-.nav-link:hover {
-  text-decoration: underline;
-} */
