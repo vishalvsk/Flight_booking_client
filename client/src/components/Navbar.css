@@ -9,7 +9,7 @@
 .navbar_nav {
   display: flex;
   flex-wrap: wrap; /* Wrap items to next line if there's not enough space */
-  justify-content: space-between; /* Distribute items evenly */
+  justify-content: space-around; /* Distribute items evenly */
 }
 
 /* Navbar Item */
@@ -18,10 +18,10 @@
 }
 
 /* Navbar Link */
-.nav-link {
+/* .nav-link {
   color: white;
   text-decoration: none;
-}
+} */
 
 /* Navbar Link Hover */
 .nav-link:hover {

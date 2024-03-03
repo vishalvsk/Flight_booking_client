@@ -8,7 +8,10 @@ function Navbar() {
 
   const handleLogout = () => {
     localStorage.removeItem("userData");
-    window.location.reload(); // Refresh the page to update the navbar
+    window.location.reload();
+  };
+  const handleProfile = () => {
+    window.location.href = "/profile";
   };
 
   return (
@@ -16,7 +19,7 @@ function Navbar() {
       <nav className="navbar">
         <ul className="navbar_nav">
           <li className="nav-item">
-            <a href="/home" className="nav-link">
+            <a href="/landing" className="nav-link">
               Flights
             </a>
           </li>
@@ -36,6 +39,9 @@ function Navbar() {
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                 <button className="dropdown-item" onClick={handleLogout}>
                   Logout
+                </button>
+                <button className="dropdown-item" onClick={handleProfile}>
+                  profile
                 </button>
               </div>
             </li>

@@ -8,7 +8,7 @@ import Loginscreen from "./screens/Loginscreen";
 import Registerscreen from "./screens/Registerscreen";
 import LandingPage from "./components/Landing";
 
-
+import BookPanel from "./screens/BookPanel";
 
 function App() {
   return (
@@ -20,6 +20,7 @@ function App() {
         <Route path="/book/:flightid" element={<Bookingscreen />} />
         <Route path="/login" element={<Loginscreen />} />
         <Route path="/register" element={<Registerscreen />} />
+        <Route path="/profile" element={<BookPanel />} />
       </Routes>
     </div>
   );

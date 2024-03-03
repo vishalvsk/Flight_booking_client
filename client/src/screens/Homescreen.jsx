@@ -2,14 +2,18 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Flight from "../components/Flight";
 import Loader from "../components/Loader";
-import { DatePicker } from "antd";
+import { DatePicker, Input, Select } from "antd";
 import "antd/dist/antd.css";
 const { RangePicker } = DatePicker;
+const { Option } = Select;
 
 function Homescreen() {
-  const [flight, setFlight] = useState([]);
-  const [loading, setLoading] = useState();
-  const [error, setError] = useState();
+  const [flights, setFlights] = useState([]);
+  const [filteredFlights, setFilteredFlights] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [sortFilter, setSortFilter] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -18,7 +22,8 @@ function Homescreen() {
         const response = await axios.get("/api/flights/getallflights");
 
         setTimeout(() => {
-          setFlight(response.data);
+          setFlights(response.data);
+          setFilteredFlights(response.data); // Initialize filteredFlights with all flights
           setLoading(false);
         }, 2000);
         console.log(response);
@@ -32,15 +37,58 @@ function Homescreen() {
     fetchData();
   }, []); // Empty dependency array means this effect runs once after the first render
 
-  function filterbydate(dates) {
-       console.log(dates)
-  }
+  const handleSearch = () => {
+    return flights.filter((flight) =>
+      flight.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+  };
+
+  const handleSort = (value) => {
+    setSortFilter(value);
+  };
+
+  const applyFilters = () => {
+    let filtered = flights;
+    if (searchQuery) {
+      filtered = filtered.filter((flight) =>
+        flight.name.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+    if (sortFilter === "domestic") {
+      filtered = filtered.filter((flight) => flight.type === "Domestic");
+    } else if (sortFilter === "international") {
+      filtered = filtered.filter((flight) => flight.type === "International");
+    }
+    setFilteredFlights(filtered);
+  };
+
+  useEffect(() => {
+    applyFilters();
+  }, [searchQuery, sortFilter]); // Re-run filters whenever searchQuery or sortFilter changes
 
   return (
     <div className="container">
       <div className="row mt-5">
         <div className="col-md-3">
-          <RangePicker style={{ color: "black" }}  onChange={filterbydate}/>
+          <Input
+            placeholder="Search by flight name"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+        </div>
+        <div className="col-md-3">
+          <Select
+            defaultValue="All flights"
+            style={{ width: 120 }}
+            onChange={handleSort}
+          >
+            <Option value="all">All flights</Option>
+            <Option value="domestic">Domestic</Option>
+            <Option value="international">International</Option>
+          </Select>
+        </div>
+        <div className="col-md-3">
+          <RangePicker style={{ color: "black" }} />
         </div>
       </div>
 
@@ -50,13 +98,11 @@ function Homescreen() {
         ) : error ? (
           <h1>error</h1>
         ) : (
-          flight.map((flight) => {
-            return (
-              <div key={flight.id} className="col-md-9 mt-3">
-                <Flight flight={flight} />
-              </div>
-            );
-          })
+          filteredFlights.map((filteredFlight) => (
+            <div key={filteredFlight.id} className="col-md-9 mt-3">
+              <Flight flight={filteredFlight} />
+            </div>
+          ))
         )}
       </div>
     </div>

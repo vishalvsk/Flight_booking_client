@@ -1,11 +1,20 @@
 import React, { useState } from "react";
-import { Modal, Button } from "react-bootstrap";
+import { Modal, Button, Carousel } from "react-bootstrap";
 import { Link } from "react-router-dom";
+
 function Flight({ flight }) {
   const [show, setShow] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const handleSearch = () => {
+    // Perform search logic here
+    // For example, filter flights based on name containing the search query
+    return flight.name.toLowerCase().includes(searchQuery.toLowerCase());
+  };
+
   return (
     <div className="row bs">
       <div className="col-md-4">
@@ -16,7 +25,9 @@ function Flight({ flight }) {
         <b>
           <p>Starting flight :- {flight.from}</p>
           <p>Ending flight:- {flight.to}</p>
-          <p>Max Count :- {flight.maxCount}</p>
+          <p>Departure time:- {flight.departure}</p>
+          <p>Arrival time:- {flight.arrival}</p>
+          <p>Seat Available :- {flight.maxCount}</p>
           <p>Phone Number :- {flight.phoneNumber}</p>
           <p>Type :- {flight.type}</p>
         </b>
@@ -36,23 +47,19 @@ function Flight({ flight }) {
           <Modal.Title>Modal heading</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div class="carousel-item active">
+          <Carousel>
+            <Carousel.Item>
+              <img
+                className="d-block w-100"
+                src="https://via.placeholder.com/800x400"
+                alt="Airline 1"
+              />
+            </Carousel.Item>
+            {/* Add more carousel items */}
+          </Carousel>
+          <div className="carousel-item">
             <img
-              class="d-block w-100"
-              src={flight.imgUrls[0]}
-              alt="First slide"
-            />
-          </div>
-          <div class="carousel-item">
-            <img
-              class="d-block w-100"
-              src={flight.imgUrls[1]}
-              alt="Second slide"
-            />
-          </div>
-          <div class="carousel-item">
-            <img
-              class="d-block w-100"
+              className="d-block w-100"
               src={flight.imgUrls[0]}
               alt="Third slide"
             />
