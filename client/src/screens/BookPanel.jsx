@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { API_URL } from "../constant/const";
 
 function BookPanel() {
   const [bookedFlights, setBookedFlights] = useState([]);
@@ -7,7 +8,9 @@ function BookPanel() {
   useEffect(() => {
     const fetchBookedFlights = async () => {
       try {
-        const response = await axios.get("/api/bookings/getbookedflights");
+        const response = await axios.get(
+          `${API_URL}/api/bookings/getbookedflights`
+        );
         setBookedFlights(response.data);
       } catch (error) {
         console.error(error);
@@ -19,7 +22,7 @@ function BookPanel() {
 
   const handleCancelBooking = async (bookingId) => {
     try {
-      await axios.post("/api/bookings/cancelbooking", { bookingId });
+      await axios.post(`${API_URL}/api/bookings/cancelbooking`, { bookingId });
       setBookedFlights((prevFlights) =>
         prevFlights.filter((flight) => flight._id !== bookingId)
       );

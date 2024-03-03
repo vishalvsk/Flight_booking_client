@@ -1,0 +1,1 @@
+export const API_URL = "https://flight-booking-server-1.onrender.com";

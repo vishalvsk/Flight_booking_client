@@ -4,6 +4,7 @@ import Flight from "../components/Flight";
 import Loader from "../components/Loader";
 import { DatePicker, Input, Select } from "antd";
 import "antd/dist/antd.css";
+import { API_URL } from "../constant/const";
 const { RangePicker } = DatePicker;
 const { Option } = Select;
 
@@ -19,7 +20,9 @@ function Homescreen() {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const response = await axios.get("/api/flights/getallflights");
+        const response = await axios.get(
+          `${API_URL}/api/flights/getallflights`
+        );
 
         setTimeout(() => {
           setFlights(response.data);

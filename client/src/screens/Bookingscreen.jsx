@@ -4,6 +4,8 @@ import { Modal, Button } from "react-bootstrap";
 import axios from "axios";
 import Loader from "../components/Loader";
 import BookPanel from "./BookPanel";
+import { API_URL } from "../constant/const";
+
 
 function Bookingscreen() {
   const { flightid } = useParams();
@@ -17,7 +19,7 @@ function Bookingscreen() {
     const fetchFlight = async () => {
       try {
         setLoading(true);
-        const response = await axios.post("/api/flights/getflightbyid", {
+        const response = await axios.post(`${API_URL}/api/flights/getflightbyid`, {
           flightid,
         });
         setTimeout(() => {
@@ -46,7 +48,7 @@ function Bookingscreen() {
 
     try {
       const result = await axios.post(
-        "/api/bookings/bookflight",
+        `${API_URL}/api/bookings/bookflight`,
         bookingDetails
       );
       console.log(result.data);

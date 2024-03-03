@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import Loader from "../components/Loader";
 import Success from "../components/Success";
+import { API_URL } from "../constant/const";
 
 function Registerscreen() {
   const [loading, setLoading] = useState(false);
@@ -28,7 +29,10 @@ function Registerscreen() {
 
     try {
       setLoading(true);
-      const result = await axios.post("/api/users/register", formData);
+      const result = await axios.post(
+        `${API_URL}/api/users/register`,
+        formData
+      );
       setTimeout(() => {
         setLoading(false);
         setSuccess(true);

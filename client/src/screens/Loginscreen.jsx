@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { API_URL } from "../constant/const";
 
 function Loginscreen() {
   const [formData, setFormData] = useState({
@@ -18,7 +19,7 @@ function Loginscreen() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const result = await axios.post("/api/users/login", formData);
+      const result = await axios.post(`${API_URL}/api/users/login`, formData);
       console.log(result.data);
 
       // Store user details in local storage

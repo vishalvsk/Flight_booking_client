@@ -47,19 +47,7 @@ function LandingPage() {
       </Container>
 
       <Container>
-        <Row className="my-5">
-          <Col>
-            <animated.h2 style={textAnimation}>Why Choose Us?</animated.h2>
-            <animated.ul style={textAnimation}>
-              <li>Wide range of destinations</li>
-              <li>Competitive prices</li>
-              <li>Easy booking process</li>
-              <li>Excellent customer service</li>
-            </animated.ul>
-          </Col>
-        </Row>
-
-        <Row className="my-5">
+        <Row className="my-5 bs">
           <Col>
             <animated.h2 style={textAnimation}>Popular Airlines</animated.h2>
             <Carousel>
@@ -107,6 +95,18 @@ function LandingPage() {
               className="img-fluid mt-3"
               style={planeAnimation}
             />
+          </Col>
+        </Row>
+
+        <Row className="my-3 bs">
+          <Col className="flex">
+            <animated.h2 style={textAnimation}>Why Choose Us?</animated.h2>
+            <animated.ul style={textAnimation}>
+              <li>Wide range of destinations</li>
+              <li>Competitive prices</li>
+              <li>Easy booking process</li>
+              <li>Excellent customer service</li>
+            </animated.ul>
           </Col>
         </Row>
       </Container>
