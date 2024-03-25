@@ -1,0 +1,111 @@
+1.  What are the different data types present in javascript?
+
+In JavaScript, there are two main categories of data types: primitive and non-primitive (or reference) types.
+
+Primitive Data Types:
+Number: Represents both integer and floating-point numbers. For example, 42 or 3.14159.
+String: Represents a sequence of characters, enclosed in single or double quotes. For example, 'hello' or "world".
+Boolean: Represents a logical value indicating true or false.
+Undefined: Represents a variable that has been declared but not assigned a value, or a function that returns no value.
+Null: Represents an intentional absence of any object value.
+Symbol (added in ECMAScript 6): Represents a unique and immutable value that may be used as the key of an object property.
+BigInt (added in ECMAScript 2020): Represents integers with arbitrary precision.
+Non-Primitive (Reference) Data Types:
+Object: Represents a collection of key-value pairs, where keys are strings (or Symbols) and values can be of any data type. Objects can also have methods (functions associated with them).
+Array: A special type of object used to store a collection of elements. Arrays can hold values of any data type, including other arrays or objects.
+Function: Functions in JavaScript are objects that can be invoked (called) to perform a specific task. Functions can also be assigned to variables, passed as arguments, and returned from other functions.
+
+2. Explain Hoisting in javascript.
+
+Hoisting is the default behaviour of javascript where all the variable and function declarations are moved on top.
+
+
+This means that irrespective of where the variables and functions are declared, they are moved on top of the scope. The scope can be both local and global.
+
+3. Why do we use the word “debugger” in javascript?
+The debugger for the browser must be activated in order to debug the code. Built-in debuggers may be switched on and off, requiring the user to report faults. The remaining section of the code should stop execution before moving on to the next line while debugging.
+
+4. Difference between “ == “ and “ === “ operators.
+Both are comparison operators. The difference between both the operators is that “==” is used to compare values whereas, “ === “ is used to compare both values and types.
+
+Example:
+
+var x = 2;
+var y = "2";
+(x == y)  // Returns true since the value of both x and y is the same
+(x === y) // Returns false since the typeof x is "number" and typeof y is "string
+
+5. Difference between var and let keyword in javascript.
+Some differences are 
+
+From the very beginning, the 'var' keyword was used in JavaScript programming whereas the keyword 'let' was just added in 2015.
+The keyword 'Var' has a function scope. Anywhere in the function, the variable specified using var is accessible but in ‘let’ the scope of a variable declared with the 'let' keyword is limited to the block in which it is declared. Let's start with a Block Scope.
+In ECMAScript 2015, let and const are hoisted but not initialized. Referencing the variable in the block before the variable declaration results in a ReferenceError because the variable is in a "temporal dead zone" from the start of the block until the declaration is processed.
+
+6. Is javascript a statically typed or a dynamically typed language?
+JavaScript is a dynamically typed language. In a dynamically typed language, the type of a variable is checked during run-time in contrast to a statically typed language, where the type of a variable is checked during compile-time.
+
+
+Since javascript is a loosely(dynamically) typed language, variables in JS are not associated with any type. A variable can hold the value of any data type.
+
+For example, a variable that is assigned a number type can be converted to a string type:
+
+var a = 23;
+var a = "Hello World!";
+
+8. What is NaN property in JavaScript?
+NaN property represents the “Not-a-Number” value. It indicates a value that is not a legal number.
+
+typeof of NaN will return a Number.
+
+To check if a value is NaN, we use the isNaN() function,
+
+9. Explain passed by value and passed by reference.
+
+
+
+
+"Passed by value" and "passed by reference" are terms used to describe how arguments are passed to functions in programming languages.
+
+Passed by Value:
+When a variable is passed by value to a function, a copy of the variable's value is passed to the function.
+This means that changes made to the parameter inside the function do not affect the original variable outside the function.
+JavaScript primitives (like numbers, strings, booleans, null, and undefined) are passed by value.
+Example:
+javascript
+Copy code
+function increment(num) {
+  num++;
+  return num;
+}
+
+let x = 10;
+console.log(increment(x)); // Output: 11
+console.log(x); // Output: 10 (original value unchanged)
+Passed by Reference:
+When a variable is passed by reference to a function, a reference to the variable (its memory address) is passed to the function.
+This means that changes made to the parameter inside the function will affect the original variable outside the function.
+JavaScript objects and arrays are passed by reference.
+Example:
+javascript
+Copy code
+function addName(person) {
+  person.name = 'Alice';
+  return person;
+}
+
+let user = { name: 'Bob' };
+console.log(addName(user)); // Output: { name: 'Alice' }
+console.log(user); // Output: { name: 'Alice' } (original object modified)
+In JavaScript, the distinction between passed by value and passed by reference can be a bit blurred because even though objects and arrays are technically passed by reference, what is actually passed is a reference to the object's or array's memory location, not the actual reference variable itself. This can lead to confusion, especially for those familiar with languages that strictly adhere to one method or the other.
+
+10. . What is an Immediately Invoked Function in JavaScript?
+
+
+An Immediately Invoked Function ( known as IIFE and pronounced as IIFY) is a function that runs as soon as it is defined.
+
+Syntax of IIFE :
+
+(function(){ 
+  // Do something;
+})();
